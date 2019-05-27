@@ -13,7 +13,7 @@ import zipfile
 import gdal
 from collections import defaultdict
 
-
+#uses the event ids stored for eq from a file in JAPAN_EQ Folder to download intensity shapefiles
 input_file = "C:\\Users\\kumar.shivam\\Desktop\\27-05-2018\\Loss_History_Japan_EQ.csv" 
 output_file = "C:\\Users\\kumar.shivam\\Desktop\\27-05-2018\\output3.csv"
 
@@ -24,7 +24,7 @@ with open(input_file) as f:
         row_inp.append(row)
               
 row_data = []
-with open('C:\\Users\\kumar.shivam\\Desktop\\18-05-2018\\output.csv') as f:
+with open('\\output.csv') as f:
     reader = csv.reader(f)
     for row in reader:
         row_data.append(row)
@@ -98,7 +98,7 @@ for i in selected_unique_id:
     else:
         ypath = "nothing"
         
-    final_path = "C:\\Users\\kumar.shivam\\Desktop\\Yogesh\\EQ_datapicking\\"+ypath+"\\"+unique_id+""
+    final_path = "\\EQ_datapicking\\"+ypath+"\\"+unique_id+""
     if os.path.isdir(final_path):
         print(final_path)
         os.chdir(final_path)
@@ -115,6 +115,9 @@ for i in selected_unique_id:
                 filename = final_path+rf #path to raster
                 dataset = gdal.Open(filename)
                 band = dataset.GetRasterBand(1)
+                
+     
+# picking up data on the coordinates defined by the input files
                             
                 cols = dataset.RasterXSize
                 rows = dataset.RasterYSize
